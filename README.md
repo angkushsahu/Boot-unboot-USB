@@ -84,3 +84,74 @@ exit
 **✅ Your USB is now bootable!**
 
 *(You still need to manually copy your boot files or ISO contents onto it.)*
+
+---
+
+## 🔄 How to Unboot (Make USB Normal Again)
+
+To turn the USB back into a normal storage device:
+
+### Step 1: Open Command Prompt as Administrator
+
+**Press `Win + X` ➔ Select Command Prompt (Admin) or Windows PowerShell (Admin).**
+
+### Step 2: Launch DiskPart
+
+```bash
+diskpart
+```
+
+### Step 3: List all disks
+
+```bash
+list disk
+```
+
+> *Identify your USB drive by its size.*
+
+### Step 4: Select your USB disk
+
+```bash
+select disk X
+# for e.g., select disk 1 (may be different on your system)
+```
+
+> *Replace `X` with your USB's number.*
+
+### Step 5: Clean the drive
+
+```bash
+clean
+```
+
+> **_(⚠️ Destroys all partitions and data.)_**
+
+### Step 6: Create a new partition
+
+```bash
+create partition primary
+```
+
+### Step 7: Format the drive (choose file system)
+
+```bash
+# Choose one of the following:
+# for fat32
+format fs=fat32 quick
+# for ntfs
+format fs=ntfs quick
+```
+
+### Step 10: Assign a drive letter
+
+```bash
+assign
+```
+
+### Step 11: Exit DiskPart
+
+```bash
+exit
+```
+
+**✅ Your USB is now reset as a normal, reusable storage drive!**
